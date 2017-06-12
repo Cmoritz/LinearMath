@@ -1,20 +1,25 @@
 #Chris Moritz Python Procedures
 #Linear Algebra
 
-#Functions for project 1
-#Functions for project 2 are further down
+#Vector addition
 def vplus(v,w): return [v[i] + w[i] for i in range(len(v))]
 
+#Scalar vector multiplication
 def smult(a,v): return [v[i]*a for i in range(len(v))]
 
+#Generate a zero vector
 def vzero(n): return [0 for i in range(n)]
 
+#Generate the additive inverse
 def vneg(v): return [v[i]*-1 for i in range(len(v))]
 
+#Dot product of 2 vectors
 def dot(v,w): return sum([v[i] * w[i] for i in range(len(v))])
 
+#Return the standard basis vector of n length with 1 in the jth position
 def sbasis(j,n): return [1 if i == j - 1 else 0 for i in range(n)]
 
+#Add the list of vectors together
 def vsum(vlist):
     v = [0]*len(vlist[0])
     for i in range(len(v)):
@@ -22,6 +27,7 @@ def vsum(vlist):
             v[i] = j[i] + v[i]
     return v
 
+#Generate the linear combination of the vectors with clist as the constants and vlist as the vectors
 def lincomb(clist, vlist):
     v = vlist
     for x in range(len(clist)):
@@ -29,20 +35,28 @@ def lincomb(clist, vlist):
     v = vsum(v)
     return v
 
+#Add 2 matrices together
 def mplus(A,B): return [[A[j][i] + B[j][i] for i in range(len(A))] for j in range(len(A[0]))]
 
+#Scalar multiplication of a matrix
 def cmmult(c, A): return [[A[j][i] * c for i in range(len(A))] for j in range(len(A[0]))]
 
+#Get the MxN zero matrix
 def mzero(m, n): return [[0 for i in range(n)] for j in range(m)]
 
+#Additive inverse of the matrix
 def mneg(A): return [[A[j][i] * -1 for i in range(len(A))] for j in range(len(A[0]))]
 
+#Identity matrix (must be square)
 def ID(n): return [[1 if i == j else 0 for i in range(n)] for j in range(n)]
 
+#Return the shape of the matrix
 def shape(A): return [len(A), len(A[0])]
 
+#return the transpose of the matrix
 def transpose(A): return [[A[i][j] for i in range(len(A))] for j in range(len(A[0]))]
 
+#Matrix vector multiplication
 def mvmult(A, v):
     tempMatrix = A
     for i in range(len(A)):
@@ -50,20 +64,26 @@ def mvmult(A, v):
             tempMatrix[i][j] = tempMatrix[i][j] * v[j]
     return [sum(i) for i in tempMatrix]
 
+#Matrix matrix multiplication
 def mmult(A, B): return [[sum(a*b for a,b in zip(x,y)) for y in zip(*B)] for x in A]
 
+#Are the two vectors compatible for addition
 def acompatible(A, B): return len(A) == len(B) and len(A[0]) == len(B[0])
 
+#Are the two vectors compatible for multiplication
 def mcompatible(A,B): return len(A) == len(B[0]) and len(B) == len(A[0])
 
+#Transform the matrix to a long vector
 def mtov(A): return [A[i][j] for i in range(len(A)) for j in range(len(A[0]))]
 
+#Swap rows in a matrix
 def swap(j,k,A):
     tempVal = A[j-1]
     A[j-1] = A[k-1]
     A[k-1] = tempVal
     return A
 
+#Add a row in a matrix
 def addrow(c,j,k,A):
     newMatrix = A
     newRow = smult(c, A[j-1])
@@ -83,10 +103,11 @@ def augment(A,B):
 
 
 
-##Functions for Project 2
+#Get the length of the vector
 def norm(v):
     return dot(v, v)**(1/2)
 
+#Get the length of a complex vector
 def normc(v):
     return sum([(v[i] * (v[i].real + (v[i].imag*-1j))**1/2) for i in range(len(v))])
 
@@ -201,6 +222,7 @@ def cleanMatrix(A):
             i = i + 1
     return cleaned
 
+#Vector subtraction
 def vsub(a, b):
     return [a[i] - b[i] for i in range(len(a))]
 
